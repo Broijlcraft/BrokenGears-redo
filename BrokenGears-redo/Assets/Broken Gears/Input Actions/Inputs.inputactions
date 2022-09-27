@@ -1,0 +1,115 @@
+{
+    "name": "Inputs",
+    "maps": [
+        {
+            "name": "PlayerControls",
+            "id": "65a67abc-9863-4a48-920a-77f0c7360ce3",
+            "actions": [
+                {
+                    "name": "Movement",
+                    "type": "Button",
+                    "id": "05c68ae5-6914-4210-af0e-52e9e4eb8f98",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "RotationDeltaX",
+                    "type": "PassThrough",
+                    "id": "ce1a7574-c675-40b0-a06f-a476135a28fe",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "RotationDeltaY",
+                    "type": "PassThrough",
+                    "id": "7abfef7e-cc2d-4a5c-b51f-f6157c90469b",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "WASD",
+                    "id": "4a9d7eae-f2c3-4a24-be86-211ced5a56f1",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "20644213-d4ba-4c34-954c-acc47cdaae77",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "5ae602e5-ecbb-40f1-8c60-a223d46b8078",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "3f204b4f-4372-440a-8737-e6c76fa6e9d4",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "c780849f-db95-4d4d-b3d0-7d139d16e13b",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "c9c32ce2-1c4c-4f46-bc24-bdc112332831",
+                    "path": "<Mouse>/delta/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotationDeltaX",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "59443a96-2b3f-4224-9d5d-8cc3fb0ae49b",
+                    "path": "<Mouse>/delta/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotationDeltaY",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
