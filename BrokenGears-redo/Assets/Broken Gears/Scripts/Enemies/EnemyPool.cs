@@ -10,10 +10,9 @@ namespace BrokenGears.Enemies {
 
     [System.Serializable]
     public class Pool {
-        [SerializeField] private GameObject prefab;
-        [SerializeField] private int amount;
+        public GameObject prefab;
+        public int amountToSpawn;
 
-        public GameObject Prefab => prefab;
-        public int Amount => amount;
+        /*[HideInInspector] */public int amountSpawned;
     }
 }
