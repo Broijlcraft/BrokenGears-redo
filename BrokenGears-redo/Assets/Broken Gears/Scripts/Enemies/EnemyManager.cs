@@ -63,7 +63,10 @@ namespace BrokenGears.Enemies {
         }
 
         private void StartWave(int index) {
-            if(waveIndex >= waves.Length) { return; }
+            if(waveIndex >= waves.Length) {
+                canSpawn = false;
+                return;
+            }
 
             waveEnemiesLeft = new List<Pool>();
 
