@@ -13,6 +13,6 @@ namespace BrokenGears.Enemies {
         public GameObject prefab;
         public int amountToSpawn;
 
-        /*[HideInInspector] */public int amountSpawned;
+        [HideInInspector]public int amountSpawned;
     }
 }
