@@ -10,11 +10,15 @@ namespace BrokenGears {
 
         [SerializeField] private float movementSpeed;
         [SerializeField] private float rotationSpeed;
+        [SerializeField] private float verticalCameraTopClamp;
+        [SerializeField] private float verticalCameraBottomClamp;
 
         private float currentCameraZoom;
+        private float verticalCameraValue;
 
         private void Start() {
             currentCameraZoom = defaultCameraZoom;
+            verticalCameraValue = camera.transform.eulerAngles.x * -1;
         }
 
         private void Update() {
@@ -27,13 +31,36 @@ namespace BrokenGears {
         }
 
         public void RotateCameraLogic(bool fixedDeltaTime) {
-            float multiplier = rotationSpeed * GetDeltaTime(fixedDeltaTime);
+            HorizontalCameraRotation(fixedDeltaTime);
+            VerticalCameraRotation(fixedDeltaTime);
+        }
 
-            float x = Input.GetAxisRaw("Mouse X") * multiplier;
-            float y = Input.GetAxisRaw("Mouse Y") * multiplier * -1f;
-
-            camera.transform.Rotate(Vector3.right * y);
+        private void HorizontalCameraRotation(bool fixedDeltaTime) {
+            float x = Input.GetAxisRaw("Mouse X") * rotationSpeed * 10f * GetDeltaTime(fixedDeltaTime);
             transform.Rotate(Vector3.up * x, Space.World);
+        }
+
+        private void VerticalCameraRotation(bool fixedDeltaTime) {
+            float mouseY = Input.GetAxis("Mouse Y") * rotationSpeed * rotationSpeed * GetDeltaTime(fixedDeltaTime);
+            verticalCameraValue += mouseY;
+
+            if (verticalCameraValue > verticalCameraTopClamp) {
+                verticalCameraValue = verticalCameraTopClamp;
+                mouseY = 0f;
+                ClampXRotationAxisToValue(camera.transform, -verticalCameraTopClamp);
+            } else if (verticalCameraValue < -verticalCameraBottomClamp) {
+                verticalCameraValue = -verticalCameraBottomClamp;
+                mouseY = 0f;
+                ClampXRotationAxisToValue(camera.transform, verticalCameraBottomClamp);
+            }
+
+            camera.transform.Rotate(Vector3.left * mouseY);
+        }
+
+        private void ClampXRotationAxisToValue(Transform transform_, float value) {
+            Vector3 eulerRotation = transform_.localEulerAngles;
+            eulerRotation.x = value;
+            transform_.localEulerAngles = eulerRotation;
         }
 
         private void ZoomCameraLogic(bool fixedDeltaTime) {
