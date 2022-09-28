@@ -2,94 +2,64 @@ namespace BrokenGears {
     using UnityEngine;
 
     public class PlayerControl : MonoBehaviour {
+        [SerializeField] private new Camera camera;
 
-        [SerializeField] private ControlType controlType;
-        [Space]
-        [SerializeField, Tooltip("old middle mouseclick control")] private CameraControl mm_cameraControl;
+        [SerializeField] private float minCameraZoom;
+        [SerializeField] private float defaultCameraZoom;
+        [SerializeField] private float cameraZoomSpeed;
+
+        [SerializeField] private float movementSpeed;
+        [SerializeField] private float rotationSpeed;
+
+        private float currentCameraZoom;
+
+        private void Start() {
+            currentCameraZoom = defaultCameraZoom;
+        }
 
         private void Update() {
-            switch (controlType) {
-                case ControlType.mm_cameraControl:
-                    mm_cameraControl.RotateCamera(true);
-                    break;
-            }
+            RotateCameraLogic(false);
+            ZoomCameraLogic(false);
         }
 
         private void FixedUpdate() {
-            switch (controlType) {
-                case ControlType.mm_cameraControl:
-                    mm_cameraControl.Move(true);
-                    break;
-            }
+            MoveCameraLogic(true);
         }
 
-        private enum ControlType {
-            mm_cameraControl,
+        public void RotateCameraLogic(bool fixedDeltaTime) {
+            float multiplier = rotationSpeed * GetDeltaTime(fixedDeltaTime);
+
+            float x = Input.GetAxisRaw("Mouse X") * multiplier;
+            float y = Input.GetAxisRaw("Mouse Y") * multiplier * -1f;
+
+            camera.transform.Rotate(Vector3.right * y);
+            transform.Rotate(Vector3.up * x, Space.World);
         }
 
-        [System.Serializable]
-        public class CameraControl {
-            [SerializeField] private Camera camera;
-            [SerializeField] private Transform camHold;
-
-            [SerializeField] private ControlSettings movement;
-            [SerializeField] private ControlSettings rotation;
-
-            public Camera Camera => camera;
-            public Transform CamHold => camHold;
-
-            public void Move(bool fixedDeltaTime) {
-                float multiplier = movement.Speed * GetDeltaTime(fixedDeltaTime);
-
-                float x = GetAxis("Horizontal") * multiplier * (movement.InvertHorizontal ? -1f : 1f);
-                float y = GetAxis("Vertical") * multiplier * (movement.InvertVertical ? -1f : 1f);
-
-                Vector3 position = new Vector3(x, 0f, y);
-                camHold.Translate(position);
-            }
-
-            public void RotateCamera(bool fixedDeltaTime) {
-                float multiplier = rotation.Speed * GetDeltaTime(fixedDeltaTime);
-
-                float x = GetAxis("Mouse X") * multiplier * (rotation.InvertHorizontal ? -1f : 1f);
-                float y = GetAxis("Mouse Y") * multiplier * (rotation.InvertVertical ? -1f : 1f);
-
-                camera.transform.Rotate(Vector3.right * y);
-                camHold.Rotate(Vector3.up * x, Space.World);
-            }
-
-            private float GetAxis(string name) {
-                float value;
-                if (rotation.Acceleration) {
-                    value = Input.GetAxis(name);
-                } else {
-                    value = Input.GetAxisRaw(name);
-                }
-                return value;
-            }
-
-            private float GetDeltaTime(bool fixedDeltaTime) {
-                float deltaTime;
-                if (fixedDeltaTime) {
-                    deltaTime = Time.fixedDeltaTime;
-                } else {
-                    deltaTime = Time.deltaTime;
-                }
-                return deltaTime;
-            }
+        private void ZoomCameraLogic(bool fixedDeltaTime) {
+            float zoomThisFrame = Input.GetAxisRaw("Mouse ScrollWheel") * cameraZoomSpeed * GetDeltaTime(fixedDeltaTime);
+            currentCameraZoom = Mathf.Clamp(currentCameraZoom - zoomThisFrame, minCameraZoom, defaultCameraZoom);
+            camera.fieldOfView = currentCameraZoom;
         }
 
-        [System.Serializable]
-        private class ControlSettings {
-            [SerializeField] private float speed;
-            [SerializeField] private bool invertHorizontal;
-            [SerializeField] private bool invertVertical;
-            [SerializeField] private bool acceleration;
+        public void MoveCameraLogic(bool fixedDeltaTime) {
+            float multiplier = movementSpeed * GetDeltaTime(fixedDeltaTime);
 
-            public float Speed => speed;
-            public bool InvertHorizontal => invertHorizontal;
-            public bool InvertVertical => invertVertical;
-            public bool Acceleration => acceleration;
+            float x = Input.GetAxisRaw("Horizontal") * multiplier;
+            float y = Input.GetAxisRaw("Vertical") * multiplier;
+
+            Vector3 position = new Vector3(x, 0f, y);
+            transform.Translate(position);
+        }
+
+        private float GetDeltaTime(bool fixedDeltaTime) {
+            float deltaTime;
+            if (fixedDeltaTime) {
+                deltaTime = Time.fixedDeltaTime;
+            } else {
+                deltaTime = Time.deltaTime;
+            }
+            return deltaTime;
         }
     }
 }

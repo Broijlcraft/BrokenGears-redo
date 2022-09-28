@@ -7650,7 +7650,7 @@ GameObject:
   - component: {fileID: 194781103}
   - component: {fileID: 194781102}
   - component: {fileID: 194781101}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7688,7 +7688,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -40279,20 +40279,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63e4b1ec268031849b5122fd1b17bd3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controlType: 0
-  mm_cameraControl:
-    camera: {fileID: 194781102}
-    camHold: {fileID: 1246986361}
-    movement:
-      speed: 5
-      invertHorizontal: 0
-      invertVertical: 0
-      acceleration: 0
-    rotation:
-      speed: 70
-      invertHorizontal: 0
-      invertVertical: 1
-      acceleration: 0
+  camera: {fileID: 194781102}
+  minCameraZoom: 20
+  defaultCameraZoom: 60
+  cameraZoomSpeed: 2000
+  movementSpeed: 5
+  rotationSpeed: 40
 --- !u!4 &1246986361
 Transform:
   m_ObjectHideFlags: 0
