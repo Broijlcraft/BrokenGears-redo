@@ -3,7 +3,6 @@ namespace BrokenGears.Enemies {
     using UnityEngine;
 
     public class EnemyManager : MonoBehaviour {
-
         [SerializeField] private LayerMask enemylayer;
         [SerializeField] private Transform spawnpoint;
 
@@ -31,7 +30,7 @@ namespace BrokenGears.Enemies {
 
             Instance = this;
 
-            if(waves.Length == 0) {
+            if (waves.Length == 0) {
                 enabled = false;
             }
         }
@@ -56,14 +55,14 @@ namespace BrokenGears.Enemies {
 
             waveTimer += Time.deltaTime;
 
-            if(waveTimer > waveDelay) {
+            if (waveTimer > waveDelay) {
                 waveTimer = 0f;
                 isChangingWave = false;
             }
         }
 
         private void StartWave(int index) {
-            if(waveIndex >= waves.Length) {
+            if (waveIndex >= waves.Length) {
                 canSpawn = false;
                 return;
             }
@@ -94,7 +93,7 @@ namespace BrokenGears.Enemies {
                 waveEnemiesLeft.RemoveAt(randomIndex);
             }
 
-            if(waveEnemiesLeft.Count == 0) {
+            if (waveEnemiesLeft.Count == 0) {
                 StartWave(waveIndex);
                 isChangingWave = true;
             }
