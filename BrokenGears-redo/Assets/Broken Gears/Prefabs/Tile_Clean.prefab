@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6514894245522734854}
   - component: {fileID: 3563674236973421357}
   - component: {fileID: -5733466096574881513}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tile_Clean
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,6 +95,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50c6a1a2926b4964eaac3c4cf64249f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  child: {fileID: 0}
+  parent: {fileID: 0}
+  isOccupied: 0
 --- !u!65 &-5733466096574881513
 BoxCollider:
   m_ObjectHideFlags: 0
