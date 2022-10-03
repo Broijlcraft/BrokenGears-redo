@@ -22,7 +22,9 @@ namespace BrokenGears {
         }
 
         private void Update() {
-            RotateCameraLogic(false);
+            if (Input.GetButton("Left Control")) {
+                RotateCameraLogic(false);
+            }
             ZoomCameraLogic(false);
         }
 
