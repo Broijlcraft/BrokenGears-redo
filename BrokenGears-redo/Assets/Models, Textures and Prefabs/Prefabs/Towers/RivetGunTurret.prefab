@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8367772593533593421}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: ArmHolder
   m_TagString: Tower
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3259383529154732778}
   - component: {fileID: 5849013451518330651}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: DefaultTarget
   m_TagString: Tower
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3259383529904023206}
   - component: {fileID: 2938910099756114145}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: RivetGunTurret
   m_TagString: Tower
   m_Icon: {fileID: 0}
@@ -125,6 +125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaf4b08d33c287843b354b09fc2df09b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive: 0
+  material: {fileID: 2100000, guid: 42da89997c32de24b9bd5009fe381894, type: 2}
   defaultTarget: {fileID: 5849013451518330651}
   range: 4
   attackDelay: 1
@@ -164,7 +166,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3259383530758022767}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Barrel
   m_TagString: Tower
   m_Icon: {fileID: 0}
@@ -197,7 +199,7 @@ GameObject:
   - component: {fileID: 3101806798957025218}
   - component: {fileID: 3319942758513817187}
   - component: {fileID: 3314663471751530840}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4999,7 +5001,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2714264955863189880}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: WeaponHolder
   m_TagString: Tower
   m_Icon: {fileID: 0}
@@ -5020,7 +5022,7 @@ Transform:
   - {fileID: 5517695549322444043}
   m_Father: {fileID: 8367772593533593421}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7996115792522792957
 GameObject:
   m_ObjectHideFlags: 0
@@ -5031,7 +5033,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6497989235195830072}
   - component: {fileID: 5136660454076507076}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: TurretCollider
   m_TagString: Tower
   m_Icon: {fileID: 0}
@@ -5082,7 +5084,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3834564000837576889, guid: 7c8d1bc472775b54da4095b93be74890, type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3834564000837576889, guid: 7c8d1bc472775b54da4095b93be74890, type: 3}
       propertyPath: m_TagString
@@ -5170,7 +5172,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 892478403422722510, guid: 2d05f48bbff45734bbfa412fdd8e6e8b, type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 892478403422722510, guid: 2d05f48bbff45734bbfa412fdd8e6e8b, type: 3}
       propertyPath: m_TagString
@@ -5266,7 +5268,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3848989472722791232, guid: b62af125fd967a74cb4e271c6b74a587, type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3848989472722791232, guid: b62af125fd967a74cb4e271c6b74a587, type: 3}
       propertyPath: m_TagString
@@ -5418,7 +5420,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4828057980559534730, guid: 8264a9e81cb49294da8b0857c55069b1, type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4828057980559534730, guid: 8264a9e81cb49294da8b0857c55069b1, type: 3}
       propertyPath: m_TagString
