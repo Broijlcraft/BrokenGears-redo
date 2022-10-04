@@ -20,7 +20,8 @@ namespace BrokenGears.Combat {
 
         private float attackTimer;
 
-        private void Awake() {
+        protected override void Awake() {
+            base.Awake();
             attackTimer = attackDelay;
         }
 
