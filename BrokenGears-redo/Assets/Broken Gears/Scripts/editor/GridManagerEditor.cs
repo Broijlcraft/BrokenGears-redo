@@ -33,8 +33,9 @@ namespace BrokenGears.editor {
                     float zFloat = (parent.position.z - (gridSize.y / 2)) + zIndex + .5f/*half tilesize*/;
 
                     tile.transform.position = new Vector3(xFloat, 0, zFloat);
-                    tiles.Add(tile);
                     tile.gameObject.isStatic = true;
+                    tile.name += " " + tiles.Count;
+                    tiles.Add(tile);
                     EditorUtility.SetDirty(tile);
                 }
             }
