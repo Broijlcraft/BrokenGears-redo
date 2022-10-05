@@ -14,9 +14,8 @@ namespace BrokenGears {
         [SerializeField] private TurretButton[] turretButtons;
         [SerializeField] private TurretRotation[] turretRotations;
 
-        private ATurret selectedTurret;
-
         public static TurretManager Instance { get; private set; }
+        public ATurret SelectedTurret { get; private set; }
 
         private void Awake() {
             if (Instance) {
@@ -37,8 +36,8 @@ namespace BrokenGears {
 
             TryGetMouseHoverTile(ray, out Tile tile, tileLayer);
 
-            if (selectedTurret) {
-                SnapTurretToTile(selectedTurret, tile);
+            if (SelectedTurret) {
+                SnapTurretToTile(SelectedTurret, tile);
                
                 if (Input.GetButtonDown("Cancel") || Input.GetMouseButtonDown(1)) {
                     SelectTurret(null);
@@ -47,9 +46,9 @@ namespace BrokenGears {
             }
 
             if (Input.GetMouseButtonDown(0)) {
-                if (selectedTurret) {
+                if (SelectedTurret) {
                     if (!tile.IsOccupied && tile.Parent || tile.Child) {
-                        selectedTurret.PlaceTurret(tile);
+                        SelectedTurret.PlaceTurret(tile);
                         SelectTurret(null);
                     }
                 } else {
@@ -110,7 +109,7 @@ namespace BrokenGears {
                 }
             }
 
-            return selectedTurret.transform.rotation;
+            return SelectedTurret.transform.rotation;
         }
 
         private Quaternion GetTurretRotation(Direction direction) {
@@ -123,15 +122,15 @@ namespace BrokenGears {
         }
 
         private void SelectTurret(ATurret turret) {
-            if (selectedTurret) {
-                if (selectedTurret.IsPurchased) {
-                    selectedTurret.ResetToDefault();
+            if (SelectedTurret) {
+                if (SelectedTurret.IsPurchased) {
+                    SelectedTurret.ResetToDefault();
                 } else {
-                    Destroy(selectedTurret.gameObject);
+                    Destroy(SelectedTurret.gameObject);
                 }
             }
 
-            selectedTurret = turret;
+            SelectedTurret = turret;
         }
 
         private void TrySpawnTurret(ATurret turret) {
