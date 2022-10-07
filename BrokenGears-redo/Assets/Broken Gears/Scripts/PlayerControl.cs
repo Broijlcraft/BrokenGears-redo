@@ -9,12 +9,24 @@ namespace BrokenGears {
         [SerializeField] private float cameraZoomSpeed;
 
         [SerializeField] private float movementSpeed;
-        [SerializeField] private float rotationSpeed;
+        [SerializeField] private float mouseSensitivity;
         [SerializeField] private float verticalCameraTopClamp;
         [SerializeField] private float verticalCameraBottomClamp;
 
         private float currentCameraZoom;
         private float verticalCameraValue;
+
+        public float MouseSensitivity { get => mouseSensitivity;  set => mouseSensitivity = value; }
+
+        public static PlayerControl Instance { get; private set; }
+
+        private void Awake() {
+            if (Instance) {
+                Destroy(this);
+                return;
+            }
+            Instance = this;
+        }
 
         private void Start() {
             currentCameraZoom = defaultCameraZoom;
@@ -38,12 +50,12 @@ namespace BrokenGears {
         }
 
         private void HorizontalCameraRotation(bool fixedDeltaTime) {
-            float x = Input.GetAxisRaw("Mouse X") * rotationSpeed * 10f * GetDeltaTime(fixedDeltaTime);
+            float x = Input.GetAxisRaw("Mouse X") * mouseSensitivity * 10f * GetDeltaTime(fixedDeltaTime);
             transform.Rotate(Vector3.up * x, Space.World);
         }
 
         private void VerticalCameraRotation(bool fixedDeltaTime) {
-            float mouseY = Input.GetAxis("Mouse Y") * rotationSpeed * rotationSpeed * GetDeltaTime(fixedDeltaTime);
+            float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * mouseSensitivity * GetDeltaTime(fixedDeltaTime);
             verticalCameraValue += mouseY;
 
             if (verticalCameraValue > verticalCameraTopClamp) {
