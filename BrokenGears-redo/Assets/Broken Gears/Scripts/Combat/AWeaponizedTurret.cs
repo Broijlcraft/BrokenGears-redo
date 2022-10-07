@@ -26,8 +26,8 @@ namespace BrokenGears.Combat {
         }
 
         protected virtual void Update() {
-            RotateParts();
             CheckTargets();
+            RotateParts();
             AttackLogic();
         }
 
@@ -40,7 +40,7 @@ namespace BrokenGears.Combat {
         }
 
         protected virtual void CheckTargets() {
-            if (!TryGetOverlappingEnemies(out List<AEnemy> enemies)) {
+            if (!IsActive || !TryGetOverlappingEnemies(out List<AEnemy> enemies)) {
                 target = defaultTarget;
                 return;
             }

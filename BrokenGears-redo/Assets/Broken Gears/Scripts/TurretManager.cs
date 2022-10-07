@@ -131,6 +131,9 @@ namespace BrokenGears {
             }
 
             SelectedTurret = turret;
+            if (SelectedTurret) {
+                SelectedTurret.SetActive(false);
+            }
         }
 
         private void TrySpawnTurret(ATurret turret) {

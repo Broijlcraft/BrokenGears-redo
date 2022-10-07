@@ -3,8 +3,8 @@ namespace BrokenGears.Combat {
     using System.Collections.Generic;
 
     public abstract class ATurret : MonoBehaviour {
-        [SerializeField] private bool isActive;
-        [SerializeField] private bool isPurchased;
+        private bool isActive;
+        private bool isPurchased;
 
         private Tile placedParentTile;
         private List<Material> materials = new List<Material>();
@@ -25,13 +25,7 @@ namespace BrokenGears.Combat {
             EnableEmission();
         }
 
-        private void Start() {
-            if (IsActive) {
-                PlaceTurret(placedParentTile);
-            }
-        }
-
-        public bool SetActive(bool value) {
+        public virtual bool SetActive(bool value) {
             return isActive = value;
         }
 
