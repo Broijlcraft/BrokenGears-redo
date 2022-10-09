@@ -1,9 +1,11 @@
 namespace BrokenGears.Enemies {
+    using Currency;
     using UnityEngine;
     using UnityEngine.Events;
 
     public abstract class AEnemy : MonoBehaviour {
         [SerializeField] private Transform targetpoint;
+        [SerializeField] private int scrapDroppedOnDeath;
 
         protected float currentHealth;
 
@@ -58,6 +60,10 @@ namespace BrokenGears.Enemies {
 
         private void OnDeath_Internal() {
             IsAlive = false;
+
+            if (CurrencyManager.Instance) {
+                CurrencyManager.Instance.ChangeScrap(scrapDroppedOnDeath);
+            }
         }
 
         [System.Serializable]

@@ -158,6 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetpoint: {fileID: 2322764295969450389}
+  scrapDroppedOnDeath: 15
   defaultHealth: 35
   events:
     OnDeath:
