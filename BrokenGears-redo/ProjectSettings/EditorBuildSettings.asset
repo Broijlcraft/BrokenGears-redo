@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Broken Gears/Scenes/Work Scenes/DEV_MainMenu.unity
+    guid: 88124f978e2a0814196cd9152a5022cd
+  - enabled: 1
+    path: Assets/Broken Gears/Scenes/Work Scenes/DEV_Gameplay.unity
+    guid: 328becfefddfd004bbc51b95c0287e6a
   m_configObjects: {}

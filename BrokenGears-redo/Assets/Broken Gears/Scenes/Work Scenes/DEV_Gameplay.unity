@@ -19441,7 +19441,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   spawnpoint: {fileID: 160990459}
-  canSpawn: 0
+  canSpawn: 1
   spawnDelay: 2
   waveDelay: 3
   waves:
