@@ -76,6 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetpoint: {fileID: 0}
+  scrapDroppedOnDeath: 0
 --- !u!1 &3259383529904023205
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,12 +126,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaf4b08d33c287843b354b09fc2df09b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
-  material: {fileID: 2100000, guid: 42da89997c32de24b9bd5009fe381894, type: 2}
+  price: 20
+  displayName: Rivet Gun
   defaultTarget: {fileID: 5849013451518330651}
   range: 4
   attackDelay: 1
-  damage: 5
+  damage: 10
   rangeOrigin: {x: 0, y: 0, z: 0}
   bones:
   - origin: {fileID: 8367772593533593421}

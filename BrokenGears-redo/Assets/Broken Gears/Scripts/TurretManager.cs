@@ -11,11 +11,15 @@ namespace BrokenGears {
         [SerializeField] private Color canPlaceColor;
         [SerializeField] private Color canNotPlaceColor;
 
-        [SerializeField] private TurretButton[] turretButtons;
+        [SerializeField] private Text turretName;
+        [SerializeField] private Text turretPrice;
+
         [SerializeField] private TurretRotation[] turretRotations;
 
         public static TurretManager Instance { get; private set; }
         public ATurret SelectedTurret { get; private set; }
+        public Text TurretName => turretName;
+        public Text TurretPrice => turretPrice;
 
         private void Awake() {
             if (Instance) {
@@ -26,9 +30,8 @@ namespace BrokenGears {
         }
 
         private void Start() {
-            for (int i = 0; i < turretButtons.Length; i++) {
-                turretButtons[i].Init(this);
-            }
+            TurretName.text = string.Empty;
+            TurretPrice.text = string.Empty;
         }
 
         private void Update() {
@@ -38,7 +41,7 @@ namespace BrokenGears {
 
             if (SelectedTurret) {
                 SnapTurretToTile(SelectedTurret, tile);
-               
+
                 if (Input.GetButtonDown("Cancel") || Input.GetMouseButtonDown(1)) {
                     SelectTurret(null);
                     return;
@@ -46,10 +49,12 @@ namespace BrokenGears {
             }
 
             if (Input.GetMouseButtonDown(0)) {
-                if (SelectedTurret) {
-                    if (!tile.IsOccupied && tile.Parent || tile.Child) {
-                        SelectedTurret.PlaceTurret(tile);
-                        SelectTurret(null);
+                if (SelectedTurret && tile) {
+                    if (tile.Parent || tile.Child) {
+                        if (!tile.OccupyingTurret || tile.OccupyingTurret == SelectedTurret) {
+                            SelectedTurret.PlaceTurret(tile);
+                            SelectTurret(null);
+                        }
                     }
                 } else {
                     if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, turretLayer)) {
@@ -72,14 +77,14 @@ namespace BrokenGears {
         private void SnapTurretToTile(ATurret turret, Tile tile) {
             if (turret && tile) {
                 if (tile.Parent) {
-                    tile = tile.Parent;                
+                    tile = tile.Parent;
                 }
 
                 Quaternion rotation = GetTurretRotation(tile);
                 turret.transform.SetPositionAndRotation(tile.transform.position, rotation);
 
                 Color color = canNotPlaceColor;
-                if (tile.Parent || tile.Child && !tile.IsOccupied) {
+                if ((tile.Parent || tile.Child) && (!tile.OccupyingTurret || tile.OccupyingTurret == SelectedTurret)) {
                     color = canPlaceColor;
                 }
 
@@ -88,7 +93,7 @@ namespace BrokenGears {
         }
 
         public Quaternion GetTurretRotation(Tile tile) {
-            if (tile && tile.Parent || tile.Child) {
+            if (tile && (tile.Parent || tile.Child)) {
                 Transform parent = tile.Parent ? tile.Parent.transform : tile.transform;
                 Transform child = tile.Child ? tile.Child.transform : tile.transform;
 
@@ -136,19 +141,9 @@ namespace BrokenGears {
             }
         }
 
-        private void TrySpawnTurret(ATurret turret) {
+        public void SpawnTurret(ATurret turret) {
             ATurret spawnedTurret = Instantiate(turret);
             SelectTurret(spawnedTurret);
-        }
-
-        [System.Serializable]
-        private class TurretButton {
-            [SerializeField] private Button button;
-            [SerializeField] private ATurret prefab;
-
-            public void Init(TurretManager manager) {
-                button.onClick.AddListener(() => manager.TrySpawnTurret(prefab));
-            }
         }
 
         [System.Serializable]

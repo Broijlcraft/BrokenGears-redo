@@ -1,8 +1,12 @@
 namespace BrokenGears.Combat {
+    using Currency;
     using UnityEngine;
     using System.Collections.Generic;
 
     public abstract class ATurret : MonoBehaviour {
+        [SerializeField] private int price;
+        [SerializeField] private string displayName;
+
         private bool isActive;
         private bool isPurchased;
 
@@ -11,6 +15,8 @@ namespace BrokenGears.Combat {
 
         private const string EmissionKey = "_EmissionColor";
 
+        public int Price => price;
+        public string DisplayName => displayName;
         public bool IsPurchased => isPurchased;
         protected bool IsActive => IsPurchased && isActive;
 
@@ -44,7 +50,7 @@ namespace BrokenGears.Combat {
 
         public void PlaceTurret(Tile tile) {
             if (placedParentTile) {
-                placedParentTile.IsOccupied = false;
+                placedParentTile.OccupyingTurret = null;
             }
 
             if (tile.Parent) {
@@ -54,7 +60,11 @@ namespace BrokenGears.Combat {
             isActive = true;
             isPurchased = true;
             placedParentTile = tile;
-            placedParentTile.IsOccupied = true;
+            placedParentTile.OccupyingTurret = this;
+
+            if (CurrencyManager.Instance) {
+                CurrencyManager.Instance.ChangeScrap(-price);
+            }
 
             ResetToDefault();
         }

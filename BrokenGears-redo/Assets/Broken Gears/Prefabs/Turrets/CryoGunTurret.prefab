@@ -153,8 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea0ac1eca3d9ce9499fb2bf1b05b42a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
-  material: {fileID: 2100000, guid: caad3deefe5eba54391f221befaf87db, type: 2}
+  price: 40
+  displayName: Cryo Gun
   defaultTarget: {fileID: 6879359922535116853}
   range: 4
   attackDelay: 0
@@ -214,6 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetpoint: {fileID: 0}
+  scrapDroppedOnDeath: 0
 --- !u!1 &3375208667227094263
 GameObject:
   m_ObjectHideFlags: 0

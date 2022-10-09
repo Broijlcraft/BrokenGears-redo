@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turret: {fileID: 0}
+  button: {fileID: 1279608914217510604}
 --- !u!1 &1279608914760869410
 GameObject:
   m_ObjectHideFlags: 0

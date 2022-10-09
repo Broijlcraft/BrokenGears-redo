@@ -113,8 +113,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b144a01f63b0f2a4898ba17db786d5bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
-  material: {fileID: 2100000, guid: 1759d78b502c25440baf21bbd6d1db6f, type: 2}
+  price: 40
+  displayName: Saw Turret
   defaultTarget: {fileID: 4224112860643622176}
   range: 2.4
   attackDelay: 0
@@ -178,6 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetpoint: {fileID: 0}
+  scrapDroppedOnDeath: 0
 --- !u!1 &2470080865278306672
 GameObject:
   m_ObjectHideFlags: 0
