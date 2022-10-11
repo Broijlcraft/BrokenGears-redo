@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1354459693940232967}
+  - component: {fileID: 3004458425409558651}
+  - component: {fileID: 1488545178036881064}
   m_Layer: 0
   m_Name: NormalRobot
   m_TagString: Untagged
@@ -28,8 +30,80 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6320438297071120205}
+  - {fileID: 8673802783442404717}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3004458425409558651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354459693940232966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d42eb97a4ad8cd418f34787c26ec25c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetpoint: {fileID: 8673802783442404717}
+  scrapDroppedOnDeath: 10
+  defaultHealth: 30
+  events:
+    OnDeath:
+      m_PersistentCalls:
+        m_Calls: []
+    OnDamage:
+      m_PersistentCalls:
+        m_Calls: []
+    OnHit:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &1488545178036881064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354459693940232966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e8cbc6bb73c954784032530c22e113, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 1
+  rotationSpeed: 10
+  model: {fileID: 6320438297071120205}
+  enemy: {fileID: 3004458425409558651}
+--- !u!1 &5390976575235816294
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8673802783442404717}
+  m_Layer: 0
+  m_Name: Targetpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8673802783442404717
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5390976575235816294}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1354459693940232967}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1354459692564468088
 PrefabInstance:
@@ -111,6 +185,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1354459693940232967}
     m_Modifications:
+    - target: {fileID: -6057140222963153312, guid: 475c199c17d32fe48968a7115bbb629f, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 11a0d73d9bc736040b6ffc8d393a42ad, type: 2}
     - target: {fileID: -4216859302048453862, guid: 475c199c17d32fe48968a7115bbb629f, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -167,8 +245,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Model_NormaRobot
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 475c199c17d32fe48968a7115bbb629f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 475c199c17d32fe48968a7115bbb629f, type: 3}
+--- !u!1 &7056556758472596830 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 475c199c17d32fe48968a7115bbb629f, type: 3}
+  m_PrefabInstance: {fileID: 1354459694079099991}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6320438297071120205 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 475c199c17d32fe48968a7115bbb629f, type: 3}
@@ -179,3 +266,16 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1304192527846552929, guid: 475c199c17d32fe48968a7115bbb629f, type: 3}
   m_PrefabInstance: {fileID: 1354459694079099991}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &1545673777837864679
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056556758472596830}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.86, z: 1}
+  m_Center: {x: 0, y: 0.93, z: 0}
