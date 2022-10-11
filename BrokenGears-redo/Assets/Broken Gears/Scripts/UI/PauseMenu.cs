@@ -23,9 +23,19 @@ namespace BrokenGears.UI {
         }
 
         private void Update() {
-            if (Input.GetButtonDown("Cancel")) {
+            if (Input.GetButtonDown("Cancel") && CanPause()) {
                 Pause(!IsPaused);
             }
+        }
+
+        private bool CanPause() {
+            bool canPause = true;
+
+            if (TurretManager.Instance) {
+                canPause = !TurretManager.Instance.SelectedTurret && !TurretManager.Instance.IsShowingInfo;
+            }
+
+            return canPause;
         }
 
         public void Pause(bool pause) {
