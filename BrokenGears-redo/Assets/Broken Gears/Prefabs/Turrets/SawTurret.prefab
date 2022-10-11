@@ -114,6 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buyPrice: 30
+  sellPrice: 15
   displayName: Saw Turret
   icon: {fileID: 21300000, guid: 0ac21255183dd16488bbafe5ab36222e, type: 3}
   turretImage: {fileID: 21300000, guid: 17eecbbf441e7c740beebc4ecbe82212, type: 3}

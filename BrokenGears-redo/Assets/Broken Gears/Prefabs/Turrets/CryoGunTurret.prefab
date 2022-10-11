@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buyPrice: 40
+  sellPrice: 20
   displayName: Cryo Gun
   icon: {fileID: 21300000, guid: 51324ff77e8ee4444855175a94e8a2d5, type: 3}
   turretImage: {fileID: 21300000, guid: a0a74130055f83140a008cf02cc56830, type: 3}

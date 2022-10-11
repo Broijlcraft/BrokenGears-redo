@@ -135,7 +135,7 @@ namespace BrokenGears {
             return Quaternion.identity;
         }
 
-        private void SelectTurret(ATurret turret) {
+        public void SelectTurret(ATurret turret) {
             if (SelectedTurret) {
                 if (SelectedTurret.IsPurchased) {
                     SelectedTurret.ResetToDefault();
@@ -170,10 +170,14 @@ namespace BrokenGears {
             [SerializeField] private Image turretImage;
 
             [SerializeField] private Button moveButton;
+            [SerializeField] private Button removeButton;
             [SerializeField] private Button closeButton;
+            [SerializeField] private Text sellConfirmationAmountText;
+            [SerializeField] private GameObject sellConfirmationScreen;
 
             public void Init() {
                 TrySetButton(moveButton, MoveTurret);
+                TrySetButton(removeButton, RemoveTurret);
                 TrySetButton(closeButton, () => Enable(false));
             }
 
@@ -181,16 +185,20 @@ namespace BrokenGears {
                 if (Instance) {
                     Instance.IsShowingInfo = on;
 
-                    if (on) {
-                        TrySetText(turretName, Instance.SelectedTurret.DisplayName);
-                        TrySetImage(turretIcon, Instance.SelectedTurret.Icon);
-                        TrySetImage(turretImage, Instance.SelectedTurret.TurretImage);
-                    } else if (Instance.SelectedTurret.IsActive) {
-                        Instance.SelectTurret(null);
+                    if (Instance.SelectedTurret) {
+                        if (on) {
+                            TrySetText(turretName, Instance.SelectedTurret.DisplayName);
+                            TrySetText(sellConfirmationAmountText, "Scrap Returned: " + Instance.SelectedTurret.SellPrice);
+                            TrySetImage(turretIcon, Instance.SelectedTurret.Icon);
+                            TrySetImage(turretImage, Instance.SelectedTurret.TurretImage);
+                        } else if (Instance.SelectedTurret.IsActive) {
+                            Instance.SelectTurret(null);
+                        }
                     }
                 }
 
                 holder.SetActive(on);
+                sellConfirmationScreen.SetActive(false);
             }
 
             private void TrySetText(Text text, string content) {
@@ -217,6 +225,10 @@ namespace BrokenGears {
                 Enable(false);
             }
 
+            private void RemoveTurret() {
+                Instance.SelectedTurret.Sell();
+                Enable(false);
+            }
         }
 
         private enum Direction {
