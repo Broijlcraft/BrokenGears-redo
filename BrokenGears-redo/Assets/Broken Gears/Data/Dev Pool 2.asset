@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: Dev Pool 2
   m_EditorClassIdentifier: 
   pools:
-  - prefab: {fileID: 2322764296219660969, guid: 56242fbbe745d7f47a39a4722d4ad743, type: 3}
-    amountToSpawn: 3
+  - prefab: {fileID: 9101089133651733215, guid: eb380de1f2a502b4f97168c9fd81586e, type: 3}
+    amountToSpawn: 1
     amountSpawned: 0
-  - prefab: {fileID: 2322764296219660969, guid: dad4cfbcd91a2b64b91b9d7d7c17265d, type: 3}
-    amountToSpawn: 3
+  - prefab: {fileID: 5161771157421841232, guid: 47597439905492149ba919be33329ae5, type: 3}
+    amountToSpawn: 2
+    amountSpawned: 0
+  - prefab: {fileID: 1354459693940232966, guid: 7e3665aff7eb3874dabe138bd24cf7ba, type: 3}
+    amountToSpawn: 10
     amountSpawned: 0
