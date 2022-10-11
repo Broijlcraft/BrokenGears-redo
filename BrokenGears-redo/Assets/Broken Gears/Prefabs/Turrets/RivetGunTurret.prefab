@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 6456847270382303992}
   - component: {fileID: 6816965676995547581}
   m_Layer: 0
-  m_Name: rivit.turret.
+  m_Name: Gun
   m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 7305320298791651643}
   - component: {fileID: 9064074904271602091}
   m_Layer: 0
-  m_Name: rivit.turret.arm
+  m_Name: Arm
   m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5230,7 +5230,7 @@ GameObject:
   - component: {fileID: 5371773077431280347}
   - component: {fileID: 4780688493303362005}
   m_Layer: 0
-  m_Name: rivit.turret.body
+  m_Name: Body
   m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
