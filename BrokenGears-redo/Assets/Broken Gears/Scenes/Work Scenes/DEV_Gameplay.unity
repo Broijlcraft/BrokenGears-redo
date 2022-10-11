@@ -5608,6 +5608,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HeavyRobot
       objectReference: {fileID: 0}
+    - target: {fileID: 9101089133651733215, guid: eb380de1f2a502b4f97168c9fd81586e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb380de1f2a502b4f97168c9fd81586e, type: 3}
 --- !u!1 &153837934
@@ -20236,7 +20240,7 @@ MonoBehaviour:
   waveDelay: 3
   waves:
   - {fileID: 11400000, guid: afd85318621159b4c9e2d2d81607eee2, type: 2}
-  - {fileID: 11400000, guid: b10213ae60b70db459925ef7e1e4f65e, type: 2}
+  - {fileID: 11400000, guid: ccd98b8b9c1ed854ab7bddb0c3e0c51b, type: 2}
 --- !u!1 &508479280
 GameObject:
   m_ObjectHideFlags: 0
@@ -76803,6 +76807,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NormalRobot
       objectReference: {fileID: 0}
+    - target: {fileID: 1354459693940232966, guid: 7e3665aff7eb3874dabe138bd24cf7ba, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1354459693940232967, guid: 7e3665aff7eb3874dabe138bd24cf7ba, type: 3}
       propertyPath: m_RootOrder
       value: 15
@@ -76968,6 +76976,10 @@ PrefabInstance:
     - target: {fileID: 5161771157421841232, guid: 47597439905492149ba919be33329ae5, type: 3}
       propertyPath: m_Name
       value: KamikazeRobot
+      objectReference: {fileID: 0}
+    - target: {fileID: 5161771157421841232, guid: 47597439905492149ba919be33329ae5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5161771157421841233, guid: 47597439905492149ba919be33329ae5, type: 3}
       propertyPath: m_RootOrder
