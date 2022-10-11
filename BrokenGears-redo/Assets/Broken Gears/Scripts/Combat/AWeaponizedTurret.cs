@@ -40,7 +40,7 @@ namespace BrokenGears.Combat {
         }
 
         protected virtual void CheckTargets() {
-            if (!IsActive || !TryGetOverlappingEnemies(out List<AEnemy> enemies)) {
+            if (!IsActive || !IsPurchased || !TryGetOverlappingEnemies(out List<AEnemy> enemies)) {
                 target = defaultTarget;
                 return;
             }

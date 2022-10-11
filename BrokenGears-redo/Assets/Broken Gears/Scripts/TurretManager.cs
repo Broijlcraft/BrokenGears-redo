@@ -2,6 +2,7 @@ namespace BrokenGears {
     using Combat;
     using UnityEngine;
     using UnityEngine.UI;
+    using UnityEngine.Events;
 
     public class TurretManager : MonoBehaviour {
         [SerializeField] private Camera origin;
@@ -14,10 +15,13 @@ namespace BrokenGears {
         [SerializeField] private Text turretName;
         [SerializeField] private Text turretPrice;
 
+        [SerializeField] private TurretInfo turretInfo;
+
         [SerializeField] private TurretRotation[] turretRotations;
 
         public static TurretManager Instance { get; private set; }
         public ATurret SelectedTurret { get; private set; }
+        public bool IsShowingInfo { get; private set; }
         public Text TurretName => turretName;
         public Text TurretPrice => turretPrice;
 
@@ -32,9 +36,13 @@ namespace BrokenGears {
         private void Start() {
             TurretName.text = string.Empty;
             TurretPrice.text = string.Empty;
+
+            turretInfo.Init();
         }
 
         private void Update() {
+            if (IsShowingInfo) { return; }
+
             Ray ray = origin.ScreenPointToRay(Input.mousePosition);
 
             TryGetMouseHoverTile(ray, out Tile tile, tileLayer);
@@ -60,6 +68,7 @@ namespace BrokenGears {
                     if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, turretLayer)) {
                         ATurret turret = hit.transform.GetComponentInParent<ATurret>();
                         SelectTurret(turret);
+                        turretInfo.Enable(true);
                     }
                 }
             }
@@ -75,7 +84,7 @@ namespace BrokenGears {
         }
 
         private void SnapTurretToTile(ATurret turret, Tile tile) {
-            if (turret && tile) {
+            if (turret && !turret.IsActive && tile) {
                 if (tile.Parent) {
                     tile = tile.Parent;
                 }
@@ -136,9 +145,6 @@ namespace BrokenGears {
             }
 
             SelectedTurret = turret;
-            if (SelectedTurret) {
-                SelectedTurret.SetActive(false);
-            }
         }
 
         public void SpawnTurret(ATurret turret) {
@@ -153,6 +159,64 @@ namespace BrokenGears {
 
             public Quaternion Rotation => Quaternion.Euler(rotation);
             public Direction ExtendDirection => extendDirection;
+        }
+
+        [System.Serializable]
+        public class TurretInfo {
+            [SerializeField] private GameObject holder;
+
+            [SerializeField] private Text turretName;
+            [SerializeField] private Image turretIcon;
+            [SerializeField] private Image turretImage;
+
+            [SerializeField] private Button moveButton;
+            [SerializeField] private Button closeButton;
+
+            public void Init() {
+                TrySetButton(moveButton, MoveTurret);
+                TrySetButton(closeButton, () => Enable(false));
+            }
+
+            public void Enable(bool on) {
+                if (Instance) {
+                    Instance.IsShowingInfo = on;
+
+                    if (on) {
+                        TrySetText(turretName, Instance.SelectedTurret.DisplayName);
+                        TrySetImage(turretIcon, Instance.SelectedTurret.Icon);
+                        TrySetImage(turretImage, Instance.SelectedTurret.TurretImage);
+                    } else if (Instance.SelectedTurret.IsActive) {
+                        Instance.SelectTurret(null);
+                    }
+                }
+
+                holder.SetActive(on);
+            }
+
+            private void TrySetText(Text text, string content) {
+                if (text) {
+                    text.text = string.IsNullOrEmpty(content) ? "Turret" : content;
+                }
+            }
+
+            private void TrySetImage(Image image, Sprite sprite) {
+                if (image) {
+                    image.sprite = sprite;
+                }
+            }
+
+            private void TrySetButton(Button button, UnityAction action) {
+                if (button && action != null) {
+                    button.onClick.AddListener(action);
+                }
+            }
+
+            private void MoveTurret() {
+                Instance.SelectedTurret.IsActive = false;
+                Instance.IsShowingInfo = false;
+                Enable(false);
+            }
+
         }
 
         private enum Direction {

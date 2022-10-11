@@ -6,8 +6,9 @@ namespace BrokenGears.Combat {
     public abstract class ATurret : MonoBehaviour {
         [SerializeField] private int price;
         [SerializeField] private string displayName;
+        [SerializeField] private Sprite icon;
+        [SerializeField] private Sprite turretImage;
 
-        private bool isActive;
         private bool isPurchased;
 
         private Tile placedParentTile;
@@ -17,8 +18,10 @@ namespace BrokenGears.Combat {
 
         public int Price => price;
         public string DisplayName => displayName;
+        public Sprite Icon => icon;
+        public Sprite TurretImage => turretImage;
         public bool IsPurchased => isPurchased;
-        protected bool IsActive => IsPurchased && isActive;
+        public bool IsActive { get; set; }
 
         protected virtual void Awake() {
             MeshRenderer[] meshRenderers = GetComponentsInChildren<MeshRenderer>();
@@ -29,10 +32,6 @@ namespace BrokenGears.Combat {
             }
 
             EnableEmission();
-        }
-
-        public virtual bool SetActive(bool value) {
-            return isActive = value;
         }
 
         public void ChangeColor(Color color) {
@@ -79,7 +78,7 @@ namespace BrokenGears.Combat {
             transform.SetPositionAndRotation(position, rotation);
 
             ChangeColor(Vector4.zero);
-            SetActive(true);
+            IsActive = true;
         }
     }
 }
