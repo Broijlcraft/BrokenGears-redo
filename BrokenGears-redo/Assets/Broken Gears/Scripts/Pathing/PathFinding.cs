@@ -1,10 +1,12 @@
 namespace BrokenGears.Pathing {
+    using Enemies;
     using UnityEngine;
 
     public class PathFinding : MonoBehaviour {
         [SerializeField] private float movementSpeed = 1f;
-        [SerializeField] private float rotationSpeed = 1f;
+        [SerializeField] private float rotationSpeed = 10f;
         [SerializeField] private Transform model;
+        [SerializeField] private AEnemy enemy;
 
         private Transform[] waypoints;
         private Transform currentWaypoint;
@@ -15,7 +17,7 @@ namespace BrokenGears.Pathing {
         }
 
         void Update() {
-            if (currentWaypoint) {
+            if (currentWaypoint && enemy.IsAlive) {
                 Vector3 direction = (currentWaypoint.position - transform.position).normalized;
                 transform.Translate(direction * Time.deltaTime * movementSpeed);
 
