@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b144a01f63b0f2a4898ba17db786d5bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 40
+  buyPrice: 30
   displayName: Saw Turret
   icon: {fileID: 21300000, guid: 0ac21255183dd16488bbafe5ab36222e, type: 3}
   turretImage: {fileID: 21300000, guid: 17eecbbf441e7c740beebc4ecbe82212, type: 3}

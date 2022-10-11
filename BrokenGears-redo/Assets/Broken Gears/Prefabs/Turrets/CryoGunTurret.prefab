@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea0ac1eca3d9ce9499fb2bf1b05b42a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 40
+  buyPrice: 40
   displayName: Cryo Gun
   icon: {fileID: 21300000, guid: 51324ff77e8ee4444855175a94e8a2d5, type: 3}
   turretImage: {fileID: 21300000, guid: a0a74130055f83140a008cf02cc56830, type: 3}

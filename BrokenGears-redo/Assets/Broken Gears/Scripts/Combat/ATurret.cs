@@ -4,7 +4,7 @@ namespace BrokenGears.Combat {
     using System.Collections.Generic;
 
     public abstract class ATurret : MonoBehaviour {
-        [SerializeField] private int price;
+        [SerializeField] private int buyPrice;
         [SerializeField] private string displayName;
         [SerializeField] private Sprite icon;
         [SerializeField] private Sprite turretImage;
@@ -16,7 +16,7 @@ namespace BrokenGears.Combat {
 
         private const string EmissionKey = "_EmissionColor";
 
-        public int Price => price;
+        public int BuyPrice => buyPrice;
         public string DisplayName => displayName;
         public Sprite Icon => icon;
         public Sprite TurretImage => turretImage;
@@ -56,14 +56,15 @@ namespace BrokenGears.Combat {
                 tile = tile.Parent;
             }
 
-            isActive = true;
+            if (!IsPurchased && CurrencyManager.Instance) {
+                CurrencyManager.Instance.ChangeScrap(-buyPrice);
+            }
+
+            IsActive = true;
             isPurchased = true;
             placedParentTile = tile;
             placedParentTile.OccupyingTurret = this;
 
-            if (CurrencyManager.Instance) {
-                CurrencyManager.Instance.ChangeScrap(-price);
-            }
 
             ResetToDefault();
         }

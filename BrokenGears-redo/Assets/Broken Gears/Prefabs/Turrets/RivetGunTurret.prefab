@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaf4b08d33c287843b354b09fc2df09b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 20
+  buyPrice: 20
   displayName: Rivet Gun
   icon: {fileID: 21300000, guid: 3a352bbd97d8a734f95e6bdb622478e8, type: 3}
   turretImage: {fileID: 21300000, guid: 13a3498100d5edb4393a6bb9903c9c32, type: 3}

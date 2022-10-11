@@ -23,7 +23,7 @@ namespace BrokenGears.UI {
 
         private void OnClick() {
             if (CurrencyManager.Instance && TurretManager.Instance) {
-                if (CurrencyManager.Instance.ScrapCount >= turret.Price) {
+                if (CurrencyManager.Instance.ScrapCount >= turret.BuyPrice) {
                     TurretManager.Instance.SpawnTurret(turret);
                 }
             }
@@ -32,7 +32,7 @@ namespace BrokenGears.UI {
         private void SetText(bool enter) {
             if (TurretManager.Instance) {
                 TurretManager.Instance.TurretName.text = enter ? turret.DisplayName : string.Empty;
-                TurretManager.Instance.TurretPrice.text = enter ? turret.Price.ToString() : string.Empty;
+                TurretManager.Instance.TurretPrice.text = enter ? turret.BuyPrice.ToString() : string.Empty;
             }
         }
     }
