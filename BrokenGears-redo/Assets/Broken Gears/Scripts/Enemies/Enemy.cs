@@ -3,6 +3,7 @@ namespace BrokenGears.Enemies {
 
     public class Enemy : AEnemy {
         [SerializeField] private float defaultHealth;
+        [SerializeField] private Animator animator;
         [SerializeField] private HealthEvent events;
 
         protected override float DefaultHealth() => defaultHealth;
@@ -15,6 +16,7 @@ namespace BrokenGears.Enemies {
 
         private void OnDeath() {
             Destroy(gameObject, 1f);
+            animator.SetTrigger("Death");
         }
     }
 }

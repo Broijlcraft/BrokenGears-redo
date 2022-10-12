@@ -12,11 +12,11 @@ namespace BrokenGears.Pathing {
         private Transform currentWaypoint;
         private int waypointIndex;
         
-        void Start() {
+        private void Start() {
             TryGetWaypoints();
         }
 
-        void Update() {
+        private void Update() {
             if (currentWaypoint && enemy.IsAlive) {
                 Vector3 direction = (currentWaypoint.position - transform.position).normalized;
                 transform.Translate(direction * Time.deltaTime * movementSpeed);

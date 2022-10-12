@@ -79,6 +79,7 @@ MonoBehaviour:
   targetpoint: {fileID: 7214941362208261772}
   scrapDroppedOnDeath: 15
   defaultHealth: 60
+  animator: {fileID: 5305310893216485924}
   events:
     OnDeath:
       m_PersistentCalls:
@@ -312,6 +313,11 @@ GameObject:
 --- !u!4 &2822142778655997790 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: b83bfdc2a3127fa4c8c95955aedaab9b, type: 3}
+  m_PrefabInstance: {fileID: 7084433969900475460}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &5305310893216485924 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: b83bfdc2a3127fa4c8c95955aedaab9b, type: 3}
   m_PrefabInstance: {fileID: 7084433969900475460}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &3829082642399435219 stripped
