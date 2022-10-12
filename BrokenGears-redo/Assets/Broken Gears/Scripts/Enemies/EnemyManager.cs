@@ -1,6 +1,7 @@
 namespace BrokenGears.Enemies {
-    using System.Collections.Generic;
+    using UI;
     using UnityEngine;
+    using System.Collections.Generic;
 
     public class EnemyManager : MonoBehaviour {
         [SerializeField] private LayerMask enemylayer;
@@ -11,8 +12,11 @@ namespace BrokenGears.Enemies {
         [SerializeField] private float waveDelay;
 
         [SerializeField] private EnemyPool[] waves;
+        [SerializeField] private Canvas worldCanvas;
+        [SerializeField] private EnemyHealthBar enemyHealthBar;
 
         public static EnemyManager Instance { get; private set; }
+
         public LayerMask Enemylayer => enemylayer;
 
         private bool isChangingWave;
@@ -98,6 +102,11 @@ namespace BrokenGears.Enemies {
                 StartWave(waveIndex);
                 isChangingWave = true;
             }
+        }
+
+        public EnemyHealthBar SpawnEnemyHealthBar() {
+            EnemyHealthBar healthBar = Instantiate(enemyHealthBar, worldCanvas.transform);
+            return healthBar;
         }
     }
 }

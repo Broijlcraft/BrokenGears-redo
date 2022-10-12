@@ -9,9 +9,10 @@ namespace BrokenGears.Enemies {
 
         protected float currentHealth;
 
-        public Transform Targetpoint => targetpoint;
+        public float NormalizedHealthAmount { get; private set; }
         public bool IsAlive { get; private set; }
-        
+        public Transform Targetpoint => targetpoint;
+
         protected abstract float DefaultHealth();
         public abstract HealthEvent Events();
 
@@ -52,6 +53,8 @@ namespace BrokenGears.Enemies {
 
         private void OnDamage_Internal(float amount) {
             currentHealth = Mathf.Clamp(currentHealth - amount, 0, DefaultHealth());
+
+            NormalizedHealthAmount = Mathf.Clamp01(currentHealth / DefaultHealth());
 
             if(currentHealth == 0) {
                 DoDeath();
