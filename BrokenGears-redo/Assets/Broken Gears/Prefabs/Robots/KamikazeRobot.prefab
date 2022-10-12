@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4323740397992359957
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8073647755709982980}
+  m_Layer: 0
+  m_Name: Targetpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8073647755709982980
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4323740397992359957}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5161771157421841233}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5161771157421841232
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,6 +39,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5161771157421841233}
+  - component: {fileID: 4304588326330020219}
+  - component: {fileID: 8033710318293330503}
   m_Layer: 0
   m_Name: KamikazeRobot
   m_TagString: Untagged
@@ -28,9 +60,52 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 205194477556394425}
+  - {fileID: 8073647755709982980}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4304588326330020219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5161771157421841232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d42eb97a4ad8cd418f34787c26ec25c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetpoint: {fileID: 8073647755709982980}
+  scrapDroppedOnDeath: 5
+  defaultHealth: 15
+  animator: {fileID: 7805578781984965827}
+  events:
+    OnDeath:
+      m_PersistentCalls:
+        m_Calls: []
+    OnDamage:
+      m_PersistentCalls:
+        m_Calls: []
+    OnHit:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &8033710318293330503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5161771157421841232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e8cbc6bb73c954784032530c22e113, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 2
+  rotationSpeed: 20
+  model: {fileID: 205194477556394425}
+  enemy: {fileID: 4304588326330020219}
 --- !u!1001 &631365035074346717
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -175,11 +250,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Model_KamikazeRobot
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 4e996af60e88e154baf59cfe2fdf9666, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e996af60e88e154baf59cfe2fdf9666, type: 3}
+--- !u!1 &3784051260719111082 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 4e996af60e88e154baf59cfe2fdf9666, type: 3}
+  m_PrefabInstance: {fileID: 5161771156600472227}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &205194477556394425 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 4e996af60e88e154baf59cfe2fdf9666, type: 3}
+  m_PrefabInstance: {fileID: 5161771156600472227}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7805578781984965827 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: 4e996af60e88e154baf59cfe2fdf9666, type: 3}
   m_PrefabInstance: {fileID: 5161771156600472227}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &6177574974291998658 stripped
@@ -187,3 +276,29 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1304192527846552929, guid: 4e996af60e88e154baf59cfe2fdf9666, type: 3}
   m_PrefabInstance: {fileID: 5161771156600472227}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &3108976039402869500
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3784051260719111082}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.74, z: 1}
+  m_Center: {x: 0, y: 0.86, z: 0}
+--- !u!65 &5002758644166241762
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3784051260719111082}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.4, y: 0.8, z: 0.4}
+  m_Center: {x: 0, y: 1.27, z: -0.69}
