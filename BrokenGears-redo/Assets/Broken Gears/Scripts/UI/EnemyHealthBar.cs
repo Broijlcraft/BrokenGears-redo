@@ -12,13 +12,13 @@ namespace BrokenGears.UI {
         public void Init(Enemy enemy) {
             this.enemy = enemy;
             enemy.Events().OnDamage.AddListener(UpdateFill);
-            enemy.Events().OnDeath.AddListener(() => Destroy(this.gameObject));
+            enemy.Events().OnDeath.AddListener(() => Destroy(gameObject));
         }
 
         private void LateUpdate() {
             if (enemy) {
                 transform.position = enemy.transform.position + offset;
-                transform.LookAt(enemy.transform);
+                transform.LookAt(Camera.main.transform);
             }
         }
 

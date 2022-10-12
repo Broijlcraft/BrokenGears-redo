@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 194781101}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -167,6 +167,7 @@ MonoBehaviour:
   mouseSensitivity: 20
   verticalCameraTopClamp: 10
   verticalCameraBottomClamp: 90
+  clamp: {x: 0, y: 0, z: 0}
   cameraBeam: {fileID: 8414391424939984837}
   cameraBlock: {fileID: 8775588220595436519}
   cameraHolder: {fileID: 1902653418}
