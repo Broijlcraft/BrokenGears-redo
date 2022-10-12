@@ -43,7 +43,7 @@ GameObject:
   m_Component:
   - component: {fileID: 225825684433897486}
   m_Layer: 9
-  m_Name: Salvage Tower
+  m_Name: Salvager
   m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
