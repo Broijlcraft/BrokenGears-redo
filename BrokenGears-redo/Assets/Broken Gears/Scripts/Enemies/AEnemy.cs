@@ -5,7 +5,7 @@ namespace BrokenGears.Enemies {
 
     public abstract class AEnemy : MonoBehaviour {
         [SerializeField] private Transform targetpoint;
-        [SerializeField] private int scrapDroppedOnDeath;
+        [SerializeField] protected int scrapDroppedOnDeath;
 
         protected float currentHealth;
 

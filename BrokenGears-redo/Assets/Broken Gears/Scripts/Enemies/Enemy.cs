@@ -10,6 +10,7 @@ namespace BrokenGears.Enemies {
         protected override float DefaultHealth() => defaultHealth;
         public override HealthEvent Events() => events;
         private EnemyHealthBar healthBar;
+        private DroppedScrap droppedScrap;
 
         protected override void Awake() {
             base.Awake();
@@ -19,6 +20,7 @@ namespace BrokenGears.Enemies {
         public override void Init() {
             if (!EnemyManager.Instance) { return; }
 
+            droppedScrap = EnemyManager.Instance.SpawnDroppedScrap();
             healthBar = EnemyManager.Instance.SpawnEnemyHealthBar();
             healthBar.Init(this);
         }
@@ -26,6 +28,7 @@ namespace BrokenGears.Enemies {
         private void OnDeath() {
             Destroy(gameObject, 1f);
             animator.SetTrigger("Death");
+            droppedScrap.Init(transform.position, scrapDroppedOnDeath);
         }
     }
 }

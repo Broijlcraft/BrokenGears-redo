@@ -13,10 +13,10 @@ namespace BrokenGears.Enemies {
 
         [SerializeField] private EnemyPool[] waves;
         [SerializeField] private Canvas worldCanvas;
+        [SerializeField] private DroppedScrap droppedScrap;
         [SerializeField] private EnemyHealthBar enemyHealthBar;
 
         public static EnemyManager Instance { get; private set; }
-
         public LayerMask Enemylayer => enemylayer;
 
         private bool isChangingWave;
@@ -102,6 +102,11 @@ namespace BrokenGears.Enemies {
                 StartWave(waveIndex);
                 isChangingWave = true;
             }
+        }
+
+        public DroppedScrap SpawnDroppedScrap() {
+            DroppedScrap scrap = Instantiate(droppedScrap, worldCanvas.transform);
+            return scrap;
         }
 
         public EnemyHealthBar SpawnEnemyHealthBar() {
