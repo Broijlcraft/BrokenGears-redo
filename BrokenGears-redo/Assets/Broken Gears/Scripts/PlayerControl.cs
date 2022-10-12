@@ -12,10 +12,11 @@ namespace BrokenGears {
         [SerializeField] private float mouseSensitivity;
         [SerializeField] private float verticalCameraTopClamp;
         [SerializeField] private float verticalCameraBottomClamp;
+        [SerializeField] private Vector3 clamp;
 
         [SerializeField] private Transform cameraBeam;
         [SerializeField] private Transform cameraBlock;
-        [SerializeField] private Transform horizontalCameraRotationHolder;
+        [SerializeField] private Transform cameraHolder;
 
         private float currentCameraZoom;
         private float verticalCameraValue;
@@ -35,6 +36,8 @@ namespace BrokenGears {
         private void Start() {
             currentCameraZoom = defaultCameraZoom;
             verticalCameraValue = camera.transform.eulerAngles.x * -1;
+
+            Cursor.lockState = CursorLockMode.Confined;
         }
 
         private void Update() {
@@ -55,7 +58,7 @@ namespace BrokenGears {
 
         private void HorizontalCameraRotation(bool fixedDeltaTime) {
             float x = Input.GetAxisRaw("Mouse X") * mouseSensitivity * 10f * GetDeltaTime(fixedDeltaTime);
-            horizontalCameraRotationHolder.Rotate(Vector3.up * x, Space.World);
+            cameraHolder.Rotate(Vector3.up * x, Space.World);
         }
 
         private void VerticalCameraRotation(bool fixedDeltaTime) {
@@ -91,10 +94,31 @@ namespace BrokenGears {
             float multiplier = movementSpeed * GetDeltaTime(fixedDeltaTime);
 
             float x = Input.GetAxisRaw("Horizontal") * multiplier;
-            float y = Input.GetAxisRaw("Vertical") * multiplier;
+            float z = Input.GetAxisRaw("Vertical") * multiplier;
 
-            cameraBeam.Translate(new Vector3(y, 0f, 0f));
-            cameraBlock.Translate(new Vector3(0f, 0f, -x));
+            cameraHolder.Translate(new Vector3(x, 0, z));
+
+            ClampCameraPosition();
+            UpdateBlockAndBeamPosition();
+        }
+
+        private void ClampCameraPosition() {
+            Vector3 position = cameraHolder.position;
+
+            position.x = Mathf.Clamp(position.x, -clamp.x, clamp.x);
+            position.z = Mathf.Clamp(position.z, -clamp.z, clamp.z);
+
+            cameraHolder.position = position;
+        }
+
+        private void UpdateBlockAndBeamPosition() {
+            Vector3 beamPosition = cameraBeam.position;
+            beamPosition.z = cameraHolder.position.z;
+            cameraBeam.position = beamPosition;
+
+            Vector3 blockPosition = cameraBlock.position;
+            blockPosition.x = cameraHolder.position.x;
+            cameraBlock.position = blockPosition;
         }
 
         private float GetDeltaTime(bool fixedDeltaTime) {
