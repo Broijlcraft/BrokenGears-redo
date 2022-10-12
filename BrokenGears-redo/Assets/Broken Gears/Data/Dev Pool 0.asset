@@ -10,15 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bcfc4eb9ca68eef4cbe8d5478272083f, type: 3}
-  m_Name: Dev Pool 2
+  m_Name: Dev Pool 0
   m_EditorClassIdentifier: 
   pools:
   - prefab: {fileID: 6365843064919796872, guid: eb380de1f2a502b4f97168c9fd81586e, type: 3}
     amountToSpawn: 1
-    amountSpawned: 0
-  - prefab: {fileID: 4304588326330020219, guid: 47597439905492149ba919be33329ae5, type: 3}
-    amountToSpawn: 2
-    amountSpawned: 0
-  - prefab: {fileID: 3004458425409558651, guid: 7e3665aff7eb3874dabe138bd24cf7ba, type: 3}
-    amountToSpawn: 10
     amountSpawned: 0

@@ -85,8 +85,8 @@ namespace BrokenGears.Enemies {
         private void SpawnRandomEnemy() {
             int randomIndex = Random.Range(0, waveEnemiesLeft.Count);
 
-            GameObject prefab = waveEnemiesLeft[randomIndex].prefab;
-            Instantiate(prefab, spawnpoint.position, spawnpoint.rotation);
+            AEnemy prefab = waveEnemiesLeft[randomIndex].prefab;
+            AEnemy enemy = Instantiate(prefab, spawnpoint.position, spawnpoint.rotation);
 
             waveEnemiesLeft[randomIndex].amountSpawned++;
             if (waveEnemiesLeft[randomIndex].amountSpawned == waveEnemiesLeft[randomIndex].amountToSpawn) {
