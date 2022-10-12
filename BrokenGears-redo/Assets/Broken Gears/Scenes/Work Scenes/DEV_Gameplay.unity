@@ -20102,6 +20102,7 @@ MonoBehaviour:
   waves:
   - {fileID: 11400000, guid: 3ab514f3093795a4a96d515f3cf96f18, type: 2}
   worldCanvas: {fileID: 1695930712}
+  droppedScrap: {fileID: 8132806931124666695, guid: 90c76fee7a2a77f48b8abf4818d6e13e, type: 3}
   enemyHealthBar: {fileID: 118511794529377744, guid: f92f2d9713263804cb244e4fce675042, type: 3}
 --- !u!1 &508479280
 GameObject:
