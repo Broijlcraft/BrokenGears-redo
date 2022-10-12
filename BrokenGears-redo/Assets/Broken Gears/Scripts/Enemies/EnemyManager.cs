@@ -87,6 +87,7 @@ namespace BrokenGears.Enemies {
 
             AEnemy prefab = waveEnemiesLeft[randomIndex].prefab;
             AEnemy enemy = Instantiate(prefab, spawnpoint.position, spawnpoint.rotation);
+            enemy.Init();
 
             waveEnemiesLeft[randomIndex].amountSpawned++;
             if (waveEnemiesLeft[randomIndex].amountSpawned == waveEnemiesLeft[randomIndex].amountToSpawn) {

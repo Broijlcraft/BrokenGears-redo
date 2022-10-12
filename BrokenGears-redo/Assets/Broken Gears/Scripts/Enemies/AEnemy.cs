@@ -15,13 +15,13 @@ namespace BrokenGears.Enemies {
         protected abstract float DefaultHealth();
         public abstract HealthEvent Events();
 
+        public virtual void Init() { }
+
         protected virtual void Awake() {
             if (!targetpoint) {
                 targetpoint = transform;
             }
-        }
 
-        private void Start() {
             if (Events() != null) {
                 currentHealth = DefaultHealth();
                 IsAlive = true;
