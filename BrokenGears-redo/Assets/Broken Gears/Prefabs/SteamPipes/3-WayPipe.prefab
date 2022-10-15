@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6561061025137691136}
   - component: {fileID: 590283085635254009}
   m_Layer: 0
-  m_Name: SP11
+  m_Name: 3-WayPipe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
