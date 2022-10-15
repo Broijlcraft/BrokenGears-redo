@@ -4763,7 +4763,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4899355549852972565}
   m_Layer: 0
-  m_Name: Par_Impact
+  m_Name: NailImpact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
