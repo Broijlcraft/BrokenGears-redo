@@ -1,9 +1,12 @@
 namespace BrokenGears.Combat {
+    using Enemies;
     using UnityEngine;
     using UnityEngine.Events;
 
     public class SawGun : AWeaponizedTurret {
         [SerializeField] private Bone blade;
+        [SerializeField] private SawBladeCollider sawBladeCollider;
+        [SerializeField] private ParticleSystem[] sawParticles;
 
         protected override Transform AttackOrigin() => null;
 
@@ -12,6 +15,37 @@ namespace BrokenGears.Combat {
 
             if (blade.Origin && target != defaultTarget) {
                 RotateBlade();
+            }
+        }
+
+        protected override void LateUpdate() {
+            base.LateUpdate();
+            PlayFX();   
+        }
+
+        private void PlayFX() {
+            AEnemy enemy = sawBladeCollider.Enemy;
+
+            PlayParticles(enemy);
+            //play audio
+        }
+
+        protected override void DoAttack() {
+            AEnemy enemy = sawBladeCollider.Enemy;
+
+            if (enemy) {
+                enemy.DoDamage(damage);
+            }
+        }
+
+        private void PlayParticles(bool on) {
+            for (int i = 0; i < sawParticles.Length; i++) {
+                ParticleSystem system = sawParticles[i];
+                if (on && !system.isPlaying) {
+                    sawParticles[i].Play();
+                } else if (!on && !system.isPaused) {
+                    sawParticles[i].Stop();
+                }
             }
         }
 
