@@ -28,6 +28,9 @@ namespace BrokenGears.Combat {
         protected virtual void Update() {
             CheckTargets();
             RotateParts();
+        }
+
+        protected virtual void LateUpdate() {
             AttackLogic();
         }
 
@@ -109,9 +112,7 @@ namespace BrokenGears.Combat {
                     AEnemy enemy = hit.transform.GetComponentInParent<AEnemy>();
                     if (enemy) {
                         enemy.DoHit(hit.point, damage);
-                        if(OnAttack() != null) {
-                            OnAttack()?.Invoke();
-                        }
+                        OnAttack()?.Invoke();
                     }
                 }
             }
