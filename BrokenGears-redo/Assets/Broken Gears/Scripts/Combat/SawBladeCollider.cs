@@ -8,7 +8,6 @@ namespace BrokenGears.Combat {
         private bool overlappingThisFrame;
 
         private void LateUpdate() {
-            print(Enemy);
             if (overlappingThisFrame) {
                 overlappingThisFrame = false;
                 return;
