@@ -1,4 +1,5 @@
 namespace BrokenGears.Combat {
+    using Audio;
     using Enemies;
     using UnityEngine;
     using UnityEngine.Events;
@@ -9,19 +10,21 @@ namespace BrokenGears.Combat {
         [SerializeField] protected float range;
         [SerializeField] protected float attackDelay;
         [SerializeField] protected float damage;
+        [SerializeField] protected Audioplayer attackAudio;
         [SerializeField] protected Vector3 rangeOrigin;
         [SerializeField] protected Bone[] bones;
 
         public abstract UnityEvent OnAttack();
         protected abstract Transform AttackOrigin();
 
-        protected List<AEnemy> enemiesInRange = new List<AEnemy>();
         protected AEnemy target;
+        protected List<AEnemy> enemiesInRange = new List<AEnemy>();
 
         private float attackTimer;
 
         protected override void Awake() {
             base.Awake();
+            target = defaultTarget;
             attackTimer = attackDelay;
         }
 
@@ -108,6 +111,8 @@ namespace BrokenGears.Combat {
 
         protected virtual void DoAttack() {
             if (AttackOrigin()) {
+                print("Attack");
+                attackAudio.Play();
                 if (Physics.Raycast(AttackOrigin().position, AttackOrigin().forward, out RaycastHit hit, EnemyManager.Instance.Enemylayer)) {
                     AEnemy enemy = hit.transform.GetComponentInParent<AEnemy>();
                     if (enemy) {

@@ -22,19 +22,27 @@ namespace BrokenGears.Combat {
             base.LateUpdate();
             PlayFX();   
         }
-
-        private void PlayFX() {
-            AEnemy enemy = sawBladeCollider.Enemy;
-
-            PlayParticles(enemy);
-            //play audio
-        }
-
+        
         protected override void DoAttack() {
             AEnemy enemy = sawBladeCollider.Enemy;
 
             if (enemy) {
                 enemy.DoDamage(damage);
+            }
+        }
+
+        private void PlayFX() {
+            AEnemy enemy = sawBladeCollider.Enemy;
+
+            PlayAudio(enemy);
+            PlayParticles(enemy);
+        }
+
+        private void PlayAudio(bool on) {
+            if (on) {
+                attackAudio.Play();
+            } else {
+                attackAudio.Stop();
             }
         }
 
