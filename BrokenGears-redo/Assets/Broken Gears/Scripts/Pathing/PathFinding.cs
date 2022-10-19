@@ -1,4 +1,5 @@
 namespace BrokenGears.Pathing {
+    using UI;
     using Enemies;
     using UnityEngine;
 
@@ -44,7 +45,9 @@ namespace BrokenGears.Pathing {
                 waypointIndex++;
                 return;
             }
+
             currentWaypoint = null;
+            EscapedMenu.Instance.AddEscapee();
         }
     }
 }
