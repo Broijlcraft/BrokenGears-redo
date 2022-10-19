@@ -24,8 +24,10 @@ namespace BrokenGears.UI {
         private int resolutionsIndex;
         private List<Resolution> resolutions = new List<Resolution>();
 
+        private bool HasDatabase => Database.Instance;
+
         private void Start() {
-            if (!Database.Instance) {
+            if (!HasDatabase) {
                 return;
             }
 
@@ -35,7 +37,7 @@ namespace BrokenGears.UI {
         }
 
         private void SetSliders() {
-            Settings settings = Database.Instance.Settings;
+            Settings settings = HasDatabase ? Database.Instance.Settings : new Settings();
 
             SetSlider(mouseSensitivity, settings.MouseSensitivity, FloatSettingsType.MouseSensitivity, ChangeMouseSensitivity);
             SetSlider(masterVolume, settings.MasterVolume, FloatSettingsType.MasterVolume, ChangeMasterVolume);
@@ -106,26 +108,40 @@ namespace BrokenGears.UI {
         private void ChangeFloatSettingsValue(float value, FloatSettingsType type) {
             switch (type) {
                 case FloatSettingsType.MouseSensitivity:
-                    Database.Instance.Settings.MouseSensitivity = value;
+                    if (HasDatabase) {
+                        Database.Instance.Settings.MouseSensitivity = value;
+                    }
+
                     if (PlayerControl.Instance) {
                         PlayerControl.Instance.MouseSensitivity = value;
                     }
                     break;
                 case FloatSettingsType.MasterVolume:
-                    Database.Instance.Settings.MasterVolume = value;
+                    if (HasDatabase) {
+                        Database.Instance.Settings.MasterVolume = value;
+                    }
+
                     ChangeAudioMixerValue(value, FloatSettingsType.MasterVolume);
                     break;
                 case FloatSettingsType.MusicVolume:
-                    Database.Instance.Settings.MusicVolume = value;
+                    if (HasDatabase) {
+                        Database.Instance.Settings.MusicVolume = value;
+                    }
+
                     ChangeAudioMixerValue(value, FloatSettingsType.MusicVolume);
                     break;
                 case FloatSettingsType.SfxVolume:
-                    Database.Instance.Settings.SfxVolume = value;
+                    if (HasDatabase) {
+                        Database.Instance.Settings.SfxVolume = value;
+                    }
+
                     ChangeAudioMixerValue(value, FloatSettingsType.SfxVolume);
                     break;
             }
 
-            Database.Instance.Save();
+            if (HasDatabase) {
+                Database.Instance.Save();
+            }
         }
 
         private void ChangeAudioMixerValue(float value, FloatSettingsType type) {
